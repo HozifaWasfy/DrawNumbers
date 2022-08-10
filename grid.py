@@ -10,19 +10,21 @@ class grid:
             self.pixels.append([])
             for _ in range(width):
                 self.pixels[i].append(color)
-        self.img = []
+        self.img =[]
+
 
 
 
     def get_img(self):
-        for i in range(len(self.pixels)):
+        for i in range(28):
             self.img.append([])
-            for j in range(len(self.pixels[i])):
+            for j in range(28):
                 if self.pixels[i][j] == (255, 255, 255):
                     self.img[i].append(0)
                 else:
-                    self.img[i].append(255)
-        return self.img
+                    self.img[i].append(np.random.uniform(0.4,0.6))
+        self.img = np.array(self.img).T
+        return np.array([self.img])
 
     def draw_grid(self, win):
         for i, row in enumerate(self.pixels):

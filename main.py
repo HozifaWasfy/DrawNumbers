@@ -14,7 +14,7 @@ Grid = grid(ROWS, COLS, WHITE)
 model = tf.keras.models.load_model('elmodel_elgamed.model')
 mnist = tf.keras.datasets.mnist
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
-def convert_binary(pixels):
+'''def convert_binary(pixels):
     li = pixels
 
     newMatrix = [[] for x in range(len(li))]
@@ -33,7 +33,7 @@ def convert_binary(pixels):
         for x in range(28):
             x_test[0][row][x] = newMatrix[row][x]
 
-    return x_test[:1]
+    return x_test[:1]'''
 
 def print_predict(img):
     model = tf.keras.models.load_model('elmodel_elgamed.model')
@@ -77,17 +77,21 @@ while run:
             except IndexError:
                 pass
         if keys[pygame.K_SPACE]:
-            print(Grid.get_img())
+            #print(Grid.get_img())
+
             run = False
             #Grid = grid(ROWS, COLS, WHITE)
         if keys[pygame.K_RETURN]:
             run = False
 
-            img = convert_binary(Grid.pixels)/255
+            #img = convert_binary(Grid.pixels)/255
+            img = Grid.get_img()
             plt.imshow(img[0], cmap='gray')
+            plt.colorbar()
             plt.show()
             #print(type(img))
             print_predict(img)
+            print(img.shape)
             #model.evaluate(x_test,y_test)
     draw(WIN)
 #img = np.array(Grid.get_img())
